@@ -1,19 +1,18 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    id(Plugins.APPLICATION)
+    id(Plugins.KOTLIN)
 }
 
 android {
-    compileSdk = 30
+    compileSdk = Config.SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.pantkowski.ems"
-        minSdk = 26
-        targetSdk = 30
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = Config.ID
+        minSdk = Config.SDK_MIN
+        targetSdk = Config.SDK_TARGET
+        versionCode = Config.VERSION_CODE
+        versionName = Config.VERSION_NAME
+        testInstrumentationRunner = Config.TEST_RUNNER
     }
 
     buildTypes {
@@ -23,20 +22,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.java
+        targetCompatibility = Config.java
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.JVM
     }
 }
 
 dependencies {
-    add("implementation", "androidx.core:core-ktx:1.3.2")
-    add("implementation", "androidx.appcompat:appcompat:1.2.0")
-    add("implementation", "com.google.android.material:material:1.3.0")
-    add("implementation", "androidx.constraintlayout:constraintlayout:2.0.4")
-    add("testImplementation", "junit:junit:4.13.2")
-    add("androidTestImplementation", "androidx.test.ext:junit:1.1.2")
-    add("androidTestImplementation", "androidx.test.espresso:espresso-core:3.3.0")
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_appCompat)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_core)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_constraintLayout)
+    add(Scope.TEST, Dependencies.Test.junit)
+    add(Scope.TEST_ANDROID, Dependencies.Test.androidx_junit)
 }
