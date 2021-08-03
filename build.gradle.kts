@@ -5,6 +5,10 @@ buildscript {
     }
 }
 
+plugins {
+    id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
+}
+
 allprojects {
     repositories {
         google()
@@ -21,5 +25,26 @@ subprojects {
 tasks.apply {
     create<Delete>("clean") {
         delete(rootProject.buildDir)
+    }
+}
+
+detekt {
+    toolVersion = Versions.detekt
+    buildUponDefaultConfig = true
+    debug = true
+
+    input = files(
+        "src/main/java",
+        "src/main/kotlin"
+    )
+    config = files("$projectDir/linters/detekt.yml")
+
+    reports {
+        html {
+            enabled = true
+            destination = file("build/reports/detekt.html")
+        }
+        txt.enabled = true
+        sarif.enabled = true
     }
 }
