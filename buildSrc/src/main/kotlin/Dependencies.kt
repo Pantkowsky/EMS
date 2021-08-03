@@ -1,4 +1,3 @@
-import internals.Versions
 
 /**
  * Class that encapsulates all dependency definitions used by this project.
