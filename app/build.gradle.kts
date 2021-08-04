@@ -5,7 +5,9 @@ plugins {
 }
 
 android {
-    compileSdk = Config.SDK_VERSION
+    defaultConfig {
+        applicationId = Config.ID
+    }
 }
 
 dependencies {
