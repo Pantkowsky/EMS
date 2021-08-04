@@ -3,3 +3,5 @@ plugins {
     id(Plugins.BUILD)
     id(Plugins.KOTLIN)
 }
+
+addTestingDependencies()
