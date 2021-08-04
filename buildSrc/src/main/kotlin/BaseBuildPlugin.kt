@@ -1,7 +1,9 @@
+import com.android.build.gradle.AppExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
@@ -23,10 +25,8 @@ class BaseBuildPlugin : Plugin<Project> {
 
     private fun Project.configureCommons() {
         extensions.getByType<BaseExtension>().run {
-            compileSdkVersion(Config.SDK_VERSION)
-            buildToolsVersion(Config.TOOLS_VERSION)
-
-            configureBuildTypes()
+            configureVersions()
+            configureExtensions()
             configureCompileOptions()
             configureDefault()
             configureKotlinTasks()
@@ -68,6 +68,20 @@ class BaseBuildPlugin : Plugin<Project> {
                 add(Scope.IMPLEMENTATION, Dependencies.Test.junit)
                 add(Scope.TEST, Dependencies.Test.kotlinTest)
                 add(Scope.TEST_ANDROID, Dependencies.Test.junit)
+            }
+        }
+    }
+
+    private fun BaseExtension.configureVersions() {
+        compileSdkVersion(Config.SDK_VERSION)
+        buildToolsVersion(Config.TOOLS_VERSION)
+    }
+
+    private fun BaseExtension.configureExtensions() {
+        when(this) {
+            is AppExtension -> configureBuildTypes()
+            is LibraryExtension -> defaultConfig {
+                consumerProguardFile("proguard-rules.pro")
             }
         }
     }
