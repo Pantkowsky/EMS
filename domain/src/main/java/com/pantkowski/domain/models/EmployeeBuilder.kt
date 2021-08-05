@@ -1,4 +1,4 @@
-package com.pantkowski.domain
+package com.pantkowski.domain.models
 
 internal class EmployeeBuilder {
     private var nameArg: String = ""

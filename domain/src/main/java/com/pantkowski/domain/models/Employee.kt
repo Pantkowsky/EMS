@@ -1,11 +1,18 @@
-package com.pantkowski.domain
+package com.pantkowski.domain.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.*
+
+@Entity
 data class Employee(
-    val name: String,
-    val lastName: String,
-    val age: Int,
-    val gender: Gender,
-    val address: Map<AddressType, String>
+    @PrimaryKey val id: UUID = UUID.randomUUID(),
+    @ColumnInfo val name: String,
+    @ColumnInfo val lastName: String,
+    @ColumnInfo val age: Int,
+    @ColumnInfo val gender: Gender,
+    @ColumnInfo val address: Map<AddressType, String>
 ) {
     val fullName: String
         get() = "$name $lastName"
