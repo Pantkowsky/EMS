@@ -12,4 +12,9 @@ object Versions {
     const val junit = "4.13.2"
     const val kotlin = "1.5.21"
     const val material = "1.3.0"
+    const val rxKotlin = "3.0.1"
+    const val rxAndroid = "3.0.0"
+    const val rxBindings = "4.0.0"
+    const val koin = "3.0.1"
+    const val room = "2.3.0"
 }
