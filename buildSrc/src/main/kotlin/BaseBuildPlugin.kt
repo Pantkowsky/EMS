@@ -38,6 +38,7 @@ class BaseBuildPlugin : Plugin<Project> {
             getByName(RELEASE) {
                 isMinifyEnabled = true
                 isShrinkResources = true
+                resValue("string", "app_name", "EMS")
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -46,6 +47,7 @@ class BaseBuildPlugin : Plugin<Project> {
             getByName(DEBUG) {
                 applicationIdSuffix(".dev")
                 versionNameSuffix("-dev")
+                resValue("string", "app_name", "EMS-dev")
                 splits {
                     abi.isEnable = true
                     density.isEnable = true
