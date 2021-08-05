@@ -1,5 +1,7 @@
 package com.pantkowski.domain
 
+import com.pantkowski.domain.models.AddressType
+import com.pantkowski.domain.models.Gender
 import org.junit.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
