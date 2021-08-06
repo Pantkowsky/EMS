@@ -14,8 +14,10 @@ sealed class Dependencies {
     }
 
     object Test {
-        const val androidx_junit = "androidx.test.ext:junit:${Versions.androidx_junit}"
-        const val junit = "junit:junit:${Versions.junit}"
-        const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+        const val junit_jupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.jupiter}"
+        const val junit_jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.jupiter}"
+        const val junit_testRunner = "de.mannodermaus.junit5:android-test-runner:${Versions.testCore}"
+        const val junit_testCore = "de.mannodermaus.junit5:android-test-core:${Versions.testCore}"
+        const val testRunner = "androidx.test:runner:${Versions.testRunner}"
     }
 }
