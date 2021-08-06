@@ -10,15 +10,6 @@ fun Project.addBaseAndroidDependencies() {
     }
 }
 
-fun Project.addTestingDependencies() {
-    dependencies {
-        add(Scope.TEST, Dependencies.Test.androidx_junit)
-        add(Scope.TEST, Dependencies.Test.junit)
-        add(Scope.TEST, Dependencies.Test.kotlinTest)
-        add(Scope.TEST, Dependencies.Test.kotlinTest)
-    }
-}
-
 fun Project.addRxDependencies() {
     dependencies {
         add(Scope.IMPLEMENTATION, Dependencies.Impl.rxAndroid)
@@ -33,6 +24,5 @@ fun Project.addDatabaseDependencies() {
         add(Scope.IMPLEMENTATION, Dependencies.Impl.room)
         add(Scope.IMPLEMENTATION, Dependencies.Impl.rxRoom)
         add(Scope.KAPT, Dependencies.Impl.roomAnnotationProcessor)
-        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxBindingAppCompat)
     }
 }

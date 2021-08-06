@@ -2,9 +2,9 @@ package com.pantkowski.domain
 
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Gender
-import org.junit.Test
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
 class EmployeeTest {
 
