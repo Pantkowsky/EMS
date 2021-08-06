@@ -11,7 +11,7 @@ import com.pantkowski.domain.models.Employee
 import com.pantkowski.domain.models.Gender
 import java.util.concurrent.Executors
 
-@Database(entities = [Employee::class], version = 1)
+@Database(entities = [Employee::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 internal abstract class EmployeeDB : RoomDatabase() {
 
