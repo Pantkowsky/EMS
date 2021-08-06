@@ -4,6 +4,7 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
@@ -65,9 +66,7 @@ class BaseBuildPlugin : Plugin<Project> {
             dependencies {
                 add(Scope.IMPLEMENTATION, Dependencies.Impl.kotlin_stdLib)
                 add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_core)
-                add(Scope.IMPLEMENTATION, Dependencies.Test.junit)
-                add(Scope.TEST, Dependencies.Test.kotlinTest)
-                add(Scope.TEST_ANDROID, Dependencies.Test.junit)
+                addTestingDependencies()
             }
         }
     }
@@ -99,6 +98,9 @@ class BaseBuildPlugin : Plugin<Project> {
             versionCode = Config.VERSION_CODE
             versionName = Config.VERSION_NAME
             testInstrumentationRunner = Config.TEST_RUNNER
+            setTestInstrumentationRunnerArguments(mutableMapOf(
+                "runnerBuilder" to "de.mannodermaus.junit5.AndroidJUnit5Builder"
+            ))
         }
 
     private fun Project.configureKotlinTasks() =
@@ -106,5 +108,15 @@ class BaseBuildPlugin : Plugin<Project> {
             kotlinOptions {
                 jvmTarget = Config.JVM
             }
+        }
+
+    private fun DependencyHandlerScope.addTestingDependencies() =
+        this.apply {
+            add(Scope.TEST, Dependencies.Test.junit_jupiterApi)
+            add(Scope.TEST, Dependencies.Test.junit_jupiterEngine)
+            add(Scope.TEST_ANDROID, Dependencies.Test.junit_jupiterApi)
+            add(Scope.TEST_RUNTIME, Dependencies.Test.junit_testRunner)
+            add(Scope.TEST_ANDROID, Dependencies.Test.junit_testCore)
+            add(Scope.TEST_ANDROID, Dependencies.Test.testRunner)
         }
 }

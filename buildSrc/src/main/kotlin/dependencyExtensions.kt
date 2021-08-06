@@ -9,12 +9,3 @@ fun Project.addBaseAndroidDependencies() {
         add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)
     }
 }
-
-fun Project.addTestingDependencies() {
-    dependencies {
-        add(Scope.TEST, Dependencies.Test.androidx_junit)
-        add(Scope.TEST, Dependencies.Test.junit)
-        add(Scope.TEST, Dependencies.Test.kotlinTest)
-        add(Scope.TEST, Dependencies.Test.kotlinTest)
-    }
-}
