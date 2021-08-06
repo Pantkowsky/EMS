@@ -9,3 +9,21 @@ fun Project.addBaseAndroidDependencies() {
         add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)
     }
 }
+
+fun Project.addRxDependencies() {
+    dependencies {
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxAndroid)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxJava)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxKotlin)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxBindingAppCompat)
+    }
+}
+
+fun Project.addDatabaseDependencies() {
+    dependencies {
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.room)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.rxRoom)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.gson)
+        add(Scope.KAPT, Dependencies.Impl.roomAnnotationProcessor)
+    }
+}
