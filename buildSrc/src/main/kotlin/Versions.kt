@@ -8,6 +8,7 @@ object Versions {
     const val core = "1.3.2"
     const val constraintLayout = "2.0.4"
     const val detekt = "1.17.1"
+    const val gson = "2.8.7"
     const val junit5 = "1.7.1.1"
     const val jupiter = "5.7.2"
     const val kotlin = "1.5.21"

@@ -10,6 +10,7 @@ sealed class Dependencies {
         const val androidx_core = "androidx.core:core-ktx:${Versions.core}"
         const val androidx_material = "com.google.android.material:material:${Versions.material}"
         const val androidx_constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        const val gson = "com.google.code.gson:gson:${Versions.gson}"
         const val kotlin_stdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxAndroid}"
         const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlin}"

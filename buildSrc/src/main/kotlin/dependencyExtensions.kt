@@ -23,6 +23,7 @@ fun Project.addDatabaseDependencies() {
     dependencies {
         add(Scope.IMPLEMENTATION, Dependencies.Impl.room)
         add(Scope.IMPLEMENTATION, Dependencies.Impl.rxRoom)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.gson)
         add(Scope.KAPT, Dependencies.Impl.roomAnnotationProcessor)
     }
 }
