@@ -5,7 +5,9 @@ plugins {
 }
 
 android {
-    compileSdk = Config.SDK_VERSION
+    defaultConfig {
+        applicationId = Config.ID
+    }
 }
 
 dependencies {
@@ -13,6 +15,4 @@ dependencies {
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_core)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_constraintLayout)
-    add(Scope.TEST, Dependencies.Test.junit)
-    add(Scope.TEST_ANDROID, Dependencies.Test.androidx_junit)
 }
