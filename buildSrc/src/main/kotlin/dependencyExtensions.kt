@@ -30,6 +30,7 @@ fun Project.addDatabaseDependencies() {
 
 fun Project.addFeatureBase() {
     dependencies {
+        add(Scope.IMPLEMENTATION, project(":domain"))
         add(Scope.IMPLEMENTATION, project(":features:base"))
         add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
     }
