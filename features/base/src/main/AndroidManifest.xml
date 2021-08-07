@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.pantkowski.domain"
+<manifest package="com.pantkowski.features.base"
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <dist:module>

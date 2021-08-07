@@ -27,3 +27,12 @@ fun Project.addDatabaseDependencies() {
         add(Scope.KAPT, Dependencies.Impl.roomAnnotationProcessor)
     }
 }
+
+fun Project.addFeatureBase() {
+    dependencies {
+        add(Scope.IMPLEMENTATION, project(":features:base"))
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
+    }
+    addBaseAndroidDependencies()
+    addRxDependencies()
+}

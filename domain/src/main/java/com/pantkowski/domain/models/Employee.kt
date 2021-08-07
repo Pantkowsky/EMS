@@ -3,7 +3,7 @@ package com.pantkowski.domain.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import java.util.UUID
 
 @Entity
 data class Employee(
@@ -17,7 +17,7 @@ data class Employee(
     val fullName: String
         get() = "$name $lastName"
 
-    fun isValid() : Boolean =
+    fun isValid(): Boolean =
         this.name.isNotEmpty() &&
             this.lastName.isNotEmpty() &&
             this.age in 18..99 &&
@@ -31,7 +31,7 @@ enum class Gender {
     OTHER;
 
     fun describe(): String =
-        when(this) {
+        when (this) {
             FEMALE -> "Female"
             MALE -> "Male"
             OTHER -> "Other"
