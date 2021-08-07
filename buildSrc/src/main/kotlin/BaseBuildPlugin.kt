@@ -31,6 +31,7 @@ class BaseBuildPlugin : Plugin<Project> {
             configureCompileOptions()
             configureDefault()
             configureKotlinTasks()
+            configureViewBinding()
         }
     }
 
@@ -104,6 +105,10 @@ class BaseBuildPlugin : Plugin<Project> {
                 "runnerBuilder" to "de.mannodermaus.junit5.AndroidJUnit5Builder"
             ))
         }
+
+    private fun BaseExtension.configureViewBinding() {
+        buildFeatures.viewBinding = true
+    }
 
     private fun Project.configureKotlinTasks() =
         tasks.withType(KotlinCompile::class.java).configureEach {
