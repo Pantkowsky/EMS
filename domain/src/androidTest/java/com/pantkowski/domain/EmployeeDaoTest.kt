@@ -7,7 +7,11 @@ import com.pantkowski.domain.db.EmployeeDao
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Employee
 import com.pantkowski.domain.models.Gender
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 
 class EmployeeDaoTest {
 
@@ -162,5 +166,4 @@ class EmployeeDaoTest {
                 .assertValue { it.isEmpty() }
         }
     }
-
 }
