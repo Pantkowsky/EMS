@@ -18,4 +18,5 @@ dependencies {
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_core)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_constraintLayout)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
 }
