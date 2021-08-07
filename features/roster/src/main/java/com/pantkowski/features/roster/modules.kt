@@ -1,5 +1,6 @@
 package com.pantkowski.features.roster
 
+import com.pantkowski.domain.domain
 import com.pantkowski.features.roster.internals.RosterViewModel
 import com.pantkowski.features.roster.internals.core.RosterProcessor
 import com.pantkowski.features.roster.internals.core.data.RosterRepository
@@ -17,4 +18,7 @@ private val roster = module {
     single<RosterRepository> { RosterRepositoryImpl(get()) }
 }
 
-val rosterModules = listOf(roster)
+val rosterModules = listOf(
+    roster,
+    domain
+)

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.pantkowski.features.base.activities.BaseActivity
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
@@ -47,4 +48,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         super.onDestroy()
         this.disposableBag.dispose()
     }
+
+    fun getNavigator() =
+        (this.requireActivity() as BaseActivity).getFeatureNavigator()
 }

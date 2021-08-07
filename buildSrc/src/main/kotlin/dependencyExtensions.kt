@@ -33,7 +33,15 @@ fun Project.addFeatureBase() {
         add(Scope.IMPLEMENTATION, project(":domain"))
         add(Scope.IMPLEMENTATION, project(":features:base"))
         add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.navigation)
+        add(Scope.IMPLEMENTATION, Dependencies.Impl.navigationUi)
     }
     addBaseAndroidDependencies()
     addRxDependencies()
+}
+
+fun Project.addFeatureModules() {
+    dependencies {
+        add(Scope.IMPLEMENTATION, project(":features:roster"))
+    }
 }

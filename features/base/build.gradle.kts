@@ -9,4 +9,6 @@ addRxDependencies()
 
 dependencies {
     add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.navigation)
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.navigationUi)
 }

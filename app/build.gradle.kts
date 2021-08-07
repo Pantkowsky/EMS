@@ -10,7 +10,10 @@ android {
     }
 }
 
+addFeatureModules()
+
 dependencies {
+    add(Scope.IMPLEMENTATION, project(":features:base"))
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_appCompat)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_core)
     add(Scope.IMPLEMENTATION, Dependencies.Impl.androidx_material)

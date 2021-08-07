@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/roster_navigation"
+    app:startDestination="@id/rosterFragment">
+
+    <fragment
+        android:id="@+id/rosterFragment"
+        android:name="com.pantkowski.features.roster.internals.RosterFragment"
+        android:label="RosterFragment"
+        tools:layout="@layout/fragment_roster"
+        />
+
+</navigation>

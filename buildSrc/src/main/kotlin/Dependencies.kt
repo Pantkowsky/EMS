@@ -12,14 +12,16 @@ sealed class Dependencies {
         const val androidx_constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
         const val kotlin_stdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxAndroid}"
-        const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlin}"
-        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroid}"
-        const val rxBindingAppCompat = "com.jakewharton.rxbinding4:rxbinding-appcompat:${Versions.rxBindings}"
+        const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+        const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         const val koin = "io.insert-koin:koin-android:${Versions.koin}"
         const val room = "androidx.room:room-runtime:${Versions.room}"
         const val rxRoom ="androidx.room:room-rxjava3:${Versions.room}"
         const val roomAnnotationProcessor = "androidx.room:room-compiler:${Versions.room}"
+        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxAndroid}"
+        const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlin}"
+        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroid}"
+        const val rxBindingAppCompat = "com.jakewharton.rxbinding4:rxbinding-appcompat:${Versions.rxBindings}"
     }
 
     object Test {

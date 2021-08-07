@@ -3,21 +3,20 @@ package com.pantkowski.features.roster.internals
 import android.os.Bundle
 import android.view.View
 import com.pantkowski.features.base.mvi.MviFragment
-import com.pantkowski.features.base.mvi.MviViewModel
 import com.pantkowski.features.roster.databinding.FragmentRosterBinding
 import com.pantkowski.features.roster.internals.models.*
 import com.pantkowski.features.roster.internals.models.InitialIntent
 import io.reactivex.rxjava3.core.Observable
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RosterFragment : MviFragment<
+internal class RosterFragment : MviFragment<
     RosterIntent,
     RosterAction,
     RosterResult,
     RosterViewState,
     FragmentRosterBinding>() {
 
-    override val viewModel: MviViewModel<RosterIntent, RosterAction, RosterResult, RosterViewState>
-        get() = TODO("Not yet implemented")
+    override val viewModel: RosterViewModel by viewModel()
 
     override val intents: List<Observable<out RosterIntent>>
         get() = listOf(initialIntent())
@@ -30,7 +29,7 @@ class RosterFragment : MviFragment<
     }
 
     override fun setupUiComponents(view: View, savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
+
     }
 
     private fun initialIntent(): Observable<InitialIntent> =
