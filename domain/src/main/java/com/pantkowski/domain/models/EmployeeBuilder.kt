@@ -1,6 +1,6 @@
 package com.pantkowski.domain.models
 
-internal class EmployeeBuilder {
+class EmployeeBuilder {
     private var nameArg: String = ""
     private var lastNameArg: String = ""
     private var ageArg: Int = 0
