@@ -28,7 +28,7 @@ data class EmployeeModel(
 
     val addresses: String
         get() = StringBuilder().apply {
-            append("Addresses\n")
+            append("Addresses:\n")
             takeIf { addressArg.containsKey(AddressType.HOME) }
                 ?.append("Home: ${addressArg[AddressType.HOME]}\n")
             takeIf { addressArg.containsKey(AddressType.BUSINESS) }
