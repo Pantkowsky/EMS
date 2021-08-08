@@ -4,8 +4,17 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.pantkowski.domain.models.AddressType
+import java.util.UUID
 
 internal class Converters {
+
+    @TypeConverter
+    fun toUUID(uuid: String): UUID =
+        UUID.fromString(uuid)
+
+    @TypeConverter
+    fun fromUUID(uuid: UUID): String =
+        uuid.toString()
 
     @TypeConverter
     fun toAddress(json: String): Map<AddressType, String> {
