@@ -27,15 +27,11 @@ internal class RosterFragment : MviFragment<
         FragmentRosterBinding.inflate(layoutInflater)
 
     override fun render(state: RosterViewState) {
-        binding.textView.text = "$state"
-
         when {
             state.hasErrors() -> showErrorMessage(state.error?.message)
             state.isLoading -> showLoading()
             state.hasData() -> renderUI(state.data!!)
         }
-
-
     }
 
     override fun setupUiComponents(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +42,7 @@ internal class RosterFragment : MviFragment<
         Observable.just(InitialIntent)
 
     private fun showErrorMessage(msg: String?) {
-        binding.textView.text = msg
+
     }
 
     private fun showLoading() {
@@ -54,6 +50,7 @@ internal class RosterFragment : MviFragment<
     }
 
     private fun renderUI(data: EmployeeData) {
+        binding.metadata.bind(data.count)
         this.adapter.setEmployees(data.employees)
     }
 }
