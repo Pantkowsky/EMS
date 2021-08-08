@@ -10,6 +10,7 @@ data class Employee(
     @ColumnInfo val name: String,
     @ColumnInfo val lastName: String,
     @ColumnInfo val age: Int,
+    @ColumnInfo val salary: Long,
     @ColumnInfo val gender: Gender,
     @ColumnInfo val address: Map<AddressType, String>,
     @PrimaryKey val id: UUID = UUID.nameUUIDFromBytes("$name $lastName".encodeToByteArray())
@@ -21,6 +22,7 @@ data class Employee(
         this.name.isNotEmpty() &&
             this.lastName.isNotEmpty() &&
             this.age in 18..99 &&
+            this.salary > 0 &&
             this.address.isNotEmpty() &&
             this.address.keys.size in 1..2
 }

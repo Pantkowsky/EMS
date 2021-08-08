@@ -5,12 +5,14 @@ import com.pantkowski.domain.models.Gender
 
 data class EmployeeData(
     val count: Int,
+    val salaries: Long,
     val employees: List<EmployeeModel>
 )
 
 data class EmployeeModel(
     private val nameArg: String,
     private val ageArg: Int,
+    private val salaryArg: Long,
     private val genderArg: Gender,
     private val addressArg: Map<AddressType, String>
 ) {
@@ -19,6 +21,9 @@ data class EmployeeModel(
 
     val age: String
         get() = "Age: $ageArg"
+
+    val salary: String
+        get() = "Salary: $salaryArg"
 
     val ageNumber: Int
         get() = ageArg
@@ -38,5 +43,6 @@ data class EmployeeModel(
     fun isValid() : Boolean =
         this.nameArg.isNotEmpty() &&
             this.ageArg in 18..99 &&
+            this.salaryArg > 0 &&
             this.addressArg.isNotEmpty()
 }

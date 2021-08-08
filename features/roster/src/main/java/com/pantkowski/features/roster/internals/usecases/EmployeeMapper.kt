@@ -10,6 +10,7 @@ internal class EmployeeMapper : Mapper<List<Employee>, EmployeeData> {
     override fun mapTarget(target: List<Employee>): EmployeeData =
         EmployeeData(
             target.size,
+            target.map { it.salary }.reduce(Long::plus),
             target.map { it.toModel() }
         )
 
@@ -17,6 +18,7 @@ internal class EmployeeMapper : Mapper<List<Employee>, EmployeeData> {
         EmployeeModel(
             this.fullName,
             this.age,
+            this.salary,
             this.gender,
             this.address
         )

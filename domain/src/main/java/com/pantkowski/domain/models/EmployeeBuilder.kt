@@ -4,6 +4,7 @@ class EmployeeBuilder {
     private var nameArg: String = ""
     private var lastNameArg: String = ""
     private var ageArg: Int = 0
+    private var salaryArg: Long = 0
     private var genderArg: Gender? = null
     private var addressMap: LinkedHashMap<AddressType, String> = linkedMapOf()
 
@@ -15,6 +16,9 @@ class EmployeeBuilder {
 
     fun age(age: Int): EmployeeBuilder =
         this.apply { ageArg = age }
+
+    fun salary(salary: Long): EmployeeBuilder =
+        this.apply { salaryArg = salary }
 
     fun gender(gender: Gender): EmployeeBuilder =
         this.apply { genderArg = gender }
@@ -29,6 +33,7 @@ class EmployeeBuilder {
             name = nameArg,
             lastName = lastNameArg,
             age = ageArg,
+            salary = salaryArg,
             gender = genderArg ?: Gender.OTHER,
             address = addressMap
         )
