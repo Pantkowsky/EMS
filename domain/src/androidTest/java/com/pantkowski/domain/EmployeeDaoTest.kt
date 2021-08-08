@@ -166,4 +166,35 @@ class EmployeeDaoTest {
                 .assertValue { it.isEmpty() }
         }
     }
+
+    @Nested
+    @DisplayName("GET operations")
+    inner class GetEmployees {
+
+        @Test
+        fun shouldGetEmployees_whenDbHasRecords() {
+            dao.add(employee)
+                .test()
+                .assertComplete()
+                .assertNoErrors()
+
+            dao.getEmployees()
+                .test()
+                .assertComplete()
+                .assertNoErrors()
+                .assertValue {
+                    it.isNotEmpty() &&
+                        it.size == 1
+                }
+        }
+
+        @Test
+        fun shouldGetEmptyList_whenDbIsEmpty() {
+            dao.getEmployees()
+                .test()
+                .assertComplete()
+                .assertNoErrors()
+                .assertValue { it.isEmpty() }
+        }
+    }
 }
