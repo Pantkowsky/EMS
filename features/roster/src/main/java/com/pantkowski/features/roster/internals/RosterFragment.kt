@@ -6,6 +6,7 @@ import com.pantkowski.features.base.mvi.MviFragment
 import com.pantkowski.features.roster.databinding.FragmentRosterBinding
 import com.pantkowski.features.roster.internals.models.*
 import com.pantkowski.features.roster.internals.models.InitialIntent
+import com.pantkowski.features.roster.internals.ui.RosterAdapter
 import io.reactivex.rxjava3.core.Observable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,6 +18,7 @@ internal class RosterFragment : MviFragment<
     FragmentRosterBinding>() {
 
     override val viewModel: RosterViewModel by viewModel()
+    private val adapter: RosterAdapter = RosterAdapter()
 
     override val intents: List<Observable<out RosterIntent>>
         get() = listOf(initialIntent())
@@ -26,12 +28,32 @@ internal class RosterFragment : MviFragment<
 
     override fun render(state: RosterViewState) {
         binding.textView.text = "$state"
+
+        when {
+            state.hasErrors() -> showErrorMessage(state.error?.message)
+            state.isLoading -> showLoading()
+            state.hasData() -> renderUI(state.data!!)
+        }
+
+
     }
 
     override fun setupUiComponents(view: View, savedInstanceState: Bundle?) {
-
+        binding.rv.adapter = adapter
     }
 
     private fun initialIntent(): Observable<InitialIntent> =
         Observable.just(InitialIntent)
+
+    private fun showErrorMessage(msg: String?) {
+        binding.textView.text = msg
+    }
+
+    private fun showLoading() {
+        //TODO implement UI loader
+    }
+
+    private fun renderUI(data: EmployeeData) {
+        this.adapter.setEmployees(data.employees)
+    }
 }
