@@ -1,17 +1,20 @@
 package com.pantkowski.domain.db
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pantkowski.domain.employee
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Employee
 import com.pantkowski.domain.models.Gender
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import java.util.concurrent.Executors
 
-@Database(entities = [Employee::class], version = 1, exportSchema = false)
+@Database(entities = [Employee::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 internal abstract class EmployeeDB : RoomDatabase() {
 
@@ -32,11 +35,14 @@ internal abstract class EmployeeDB : RoomDatabase() {
                 context,
                 EmployeeDB::class.java,
                 DB_NAME
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .build()
+                .apply { prepopulate(context) }
 
         private fun prepopulate(context: Context) =
             Executors.newSingleThreadExecutor().execute {
-                getInstance(context).getEmployeeDao().add(employee)
+                getInstance(context).getEmployeeDao().addSync(employee)
             }
 
         private val employee: Employee = employee {
