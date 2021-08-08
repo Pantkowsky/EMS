@@ -50,7 +50,7 @@ internal class RosterFragment : MviFragment<
     }
 
     private fun renderUI(data: EmployeeData) {
-        binding.metadata.bind(data.count)
+        binding.metadata.bind(data.count, data.salaries)
         this.adapter.setEmployees(data.employees)
     }
 }
