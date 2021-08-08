@@ -121,9 +121,11 @@ class BaseBuildPlugin : Plugin<Project> {
         this.apply {
             add(Scope.TEST, Dependencies.Test.junit_jupiterApi)
             add(Scope.TEST, Dependencies.Test.junit_jupiterEngine)
+            add(Scope.TEST, Dependencies.Test.mockk_core)
             add(Scope.TEST_ANDROID, Dependencies.Test.junit_jupiterApi)
             add(Scope.TEST_RUNTIME, Dependencies.Test.junit_testRunner)
             add(Scope.TEST_ANDROID, Dependencies.Test.junit_testCore)
+            add(Scope.TEST_ANDROID, Dependencies.Test.mockk_android)
             add(Scope.TEST_ANDROID, Dependencies.Test.testRunner)
         }
 }

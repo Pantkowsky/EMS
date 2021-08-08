@@ -5,14 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.UUID
 
-@Entity
+@Entity(tableName = "employees")
 data class Employee(
-    @PrimaryKey val id: UUID = UUID.randomUUID(),
     @ColumnInfo val name: String,
     @ColumnInfo val lastName: String,
     @ColumnInfo val age: Int,
     @ColumnInfo val gender: Gender,
-    @ColumnInfo val address: Map<AddressType, String>
+    @ColumnInfo val address: Map<AddressType, String>,
+    @PrimaryKey val id: UUID = UUID.nameUUIDFromBytes("$name $lastName".encodeToByteArray())
 ) {
     val fullName: String
         get() = "$name $lastName"

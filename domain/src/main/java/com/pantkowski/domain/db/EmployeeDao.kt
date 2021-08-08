@@ -14,6 +14,9 @@ import io.reactivex.rxjava3.core.Single
 interface EmployeeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addSync(employee: Employee)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(employee: Employee): Completable
 
     @Update
@@ -22,6 +25,6 @@ interface EmployeeDao {
     @Delete
     fun remove(employee: Employee): Completable
 
-    @Query("SELECT * FROM employee")
+    @Query("SELECT * FROM employees")
     fun getEmployees(): Single<List<Employee>>
 }

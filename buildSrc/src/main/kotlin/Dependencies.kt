@@ -29,6 +29,8 @@ sealed class Dependencies {
         const val junit_jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.jupiter}"
         const val junit_testRunner = "de.mannodermaus.junit5:android-test-runner:${Versions.testCore}"
         const val junit_testCore = "de.mannodermaus.junit5:android-test-core:${Versions.testCore}"
+        const val mockk_core = "io.mockk:mockk:${Versions.mockk}"
+        const val mockk_android = "io.mockk:mockk-android:${Versions.mockk}"
         const val testRunner = "androidx.test:runner:${Versions.testRunner}"
     }
 }
