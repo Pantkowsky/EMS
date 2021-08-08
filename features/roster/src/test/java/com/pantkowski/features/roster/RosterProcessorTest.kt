@@ -6,6 +6,7 @@ import com.pantkowski.features.roster.internals.models.InitialAction
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
 import com.pantkowski.features.roster.util.testEmployees
+import com.pantkowski.features.roster.util.testEmployeesMapped
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.every
@@ -37,7 +38,7 @@ class RosterProcessorTest {
         @Test
         fun `should return successsful result on InitialAction`() {
 
-            val data = EmployeeData(3, testEmployees)
+            val data = EmployeeData(3, testEmployeesMapped)
             every { useCase.getEmployeeData() } returns Single.just(data)
 
             Observable.just(InitialAction)

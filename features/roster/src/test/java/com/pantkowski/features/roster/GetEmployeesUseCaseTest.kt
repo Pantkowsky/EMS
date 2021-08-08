@@ -5,6 +5,7 @@ import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
 import com.pantkowski.features.roster.util.testEmployees
+import com.pantkowski.features.roster.util.testEmployeesMapped
 import io.mockk.*
 import io.reactivex.rxjava3.core.Single
 import org.junit.jupiter.api.AfterEach
@@ -34,7 +35,7 @@ class GetEmployeesUseCaseTest {
 
         every { repository.getEmployees() } returns Single.just(testEmployees)
 
-        val expected = EmployeeData(3, testEmployees)
+        val expected = EmployeeData(3, testEmployeesMapped)
 
         useCase.getEmployeeData()
             .test()
@@ -42,8 +43,8 @@ class GetEmployeesUseCaseTest {
             .assertNoErrors()
             .assertValue { data ->
                 data.count == expected.count &&
-                    data.employees.map { it.age }
-                        .reduce(Int::plus) == expected.employees.map { it.age }.reduce(Int::plus)
+                    data.employees.map { it.ageNumber }
+                        .reduce(Int::plus) == expected.employees.map { it.ageNumber }.reduce(Int::plus)
             }
 
         verify(exactly = 1) {
