@@ -10,7 +10,10 @@ internal class EmployeeMapper : Mapper<List<Employee>, EmployeeData> {
     override fun mapTarget(target: List<Employee>): EmployeeData =
         EmployeeData(
             target.size,
-            target.takeIf { it.isNotEmpty() }?.map { it.salary }?.reduce(Long::plus) ?: 0,
+            target.takeIf { it.isNotEmpty() }
+                ?.map { it.salary }
+                ?.reduce(Long::plus)
+                ?: 0,
             target.map { it.toModel() }
         )
 
