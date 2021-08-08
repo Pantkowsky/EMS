@@ -1,8 +1,10 @@
 package com.pantkowski.features.roster
 
 import com.pantkowski.features.roster.internals.core.RosterReducer
+import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.models.RosterViewState
+import com.pantkowski.features.roster.util.testEmployees
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -35,6 +37,18 @@ class RosterReducerTest {
             assert(given.error is RuntimeException)
             assert(given.error != null)
             assert(given.error?.message == "runtime error")
+        }
+
+        @Test
+        fun `should create data state on Success result type`() {
+            val viewState = RosterViewState.idle()
+            val result = RosterResult.InitialResult.Success(EmployeeData(3, testEmployees))
+            val given = reducer.apply(viewState, result)
+
+            assert(given.isLoading.not())
+            assert(given.error == null)
+            assert(given.data != null)
+            assert(given.data?.count == 3)
         }
     }
 }
