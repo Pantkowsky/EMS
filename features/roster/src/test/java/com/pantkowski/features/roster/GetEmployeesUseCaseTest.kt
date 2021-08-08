@@ -1,13 +1,10 @@
 package com.pantkowski.features.roster
 
-import com.pantkowski.domain.models.Employee
 import com.pantkowski.features.roster.internals.core.data.RosterRepository
 import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
-import com.pantkowski.features.roster.util.adam
-import com.pantkowski.features.roster.util.anna
-import com.pantkowski.features.roster.util.robert
+import com.pantkowski.features.roster.util.testEmployees
 import io.mockk.*
 import io.reactivex.rxjava3.core.Single
 import org.junit.jupiter.api.AfterEach
@@ -17,7 +14,6 @@ import org.junit.jupiter.api.Test
 class GetEmployeesUseCaseTest {
 
     private val repository: RosterRepository = mockk()
-    private val employees: List<Employee> = listOf(adam, anna, robert)
     private lateinit var mapper: EmployeeMapper
     private lateinit var useCase: GetEmployeesUseCase
 
@@ -36,9 +32,9 @@ class GetEmployeesUseCaseTest {
     @Test
     fun `should get non-empty EmployeeData`() {
 
-        every { repository.getEmployees() } returns Single.just(employees)
+        every { repository.getEmployees() } returns Single.just(testEmployees)
 
-        val expected = EmployeeData(3, employees)
+        val expected = EmployeeData(3, testEmployees)
 
         useCase.getEmployeeData()
             .test()
@@ -52,7 +48,7 @@ class GetEmployeesUseCaseTest {
 
         verify(exactly = 1) {
             repository.getEmployees()
-            mapper.mapTarget(employees)
+            mapper.mapTarget(testEmployees)
         }
     }
 
@@ -72,7 +68,7 @@ class GetEmployeesUseCaseTest {
 
         verify(exactly = 1) {
             repository.getEmployees()
-            mapper.mapTarget(employees)
+            mapper.mapTarget(testEmployees)
         }
     }
 }

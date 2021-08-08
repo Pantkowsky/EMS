@@ -27,3 +27,5 @@ val robert = employee {
     gender(Gender.OTHER)
     address(AddressType.BUSINESS, "Business Street, 11")
 }
+
+val testEmployees = listOf(adam, anna, robert)
