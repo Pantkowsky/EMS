@@ -13,6 +13,7 @@ object Versions {
     const val jupiter = "5.7.2"
     const val kotlin = "1.5.21"
     const val material = "1.3.0"
+    const val mockk = "1.12.0"
     const val navigation = "2.3.5"
     const val rxKotlin = "3.0.1"
     const val rxAndroid = "3.0.0"
