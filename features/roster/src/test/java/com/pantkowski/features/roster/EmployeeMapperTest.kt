@@ -14,7 +14,7 @@ class EmployeeMapperTest {
     fun `should map EmployeeData correctly`() {
 
         val given = mapper.mapTarget(testEmployees)
-        val expected = EmployeeData(3, testEmployeesMapped)
+        val expected = EmployeeData(3, 3000, testEmployeesMapped)
         val givenValid = given.employees
             .map { it.isValid() }
             .reduce { acc, b -> if (b) acc else b }
@@ -34,7 +34,7 @@ class EmployeeMapperTest {
         val employees = listOf<Employee>()
 
         val given = mapper.mapTarget(employees)
-        val expected = EmployeeData(0, listOf())
+        val expected = EmployeeData(0, 0, listOf())
 
         assert(expected.count == given.count)
         assert(given.employees.isEmpty())

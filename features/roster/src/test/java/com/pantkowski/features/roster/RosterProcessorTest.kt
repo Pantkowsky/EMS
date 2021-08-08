@@ -38,7 +38,7 @@ class RosterProcessorTest {
         @Test
         fun `should return successsful result on InitialAction`() {
 
-            val data = EmployeeData(3, testEmployeesMapped)
+            val data = EmployeeData(3, 3000, testEmployeesMapped)
             every { useCase.getEmployeeData() } returns Single.just(data)
 
             Observable.just(InitialAction)

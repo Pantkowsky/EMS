@@ -43,7 +43,7 @@ class RosterReducerTest {
         @Test
         fun `should create data state on Success result type`() {
             val viewState = RosterViewState.idle()
-            val result = RosterResult.InitialResult.Success(EmployeeData(3, testEmployeesMapped))
+            val result = RosterResult.InitialResult.Success(EmployeeData(3, 3000, testEmployeesMapped))
             val given = reducer.apply(viewState, result)
 
             assert(given.isLoading.not())

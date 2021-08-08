@@ -35,7 +35,7 @@ class GetEmployeesUseCaseTest {
 
         every { repository.getEmployees() } returns Single.just(testEmployees)
 
-        val expected = EmployeeData(3, testEmployeesMapped)
+        val expected = EmployeeData(3, 3000, testEmployeesMapped)
 
         useCase.getEmployeeData()
             .test()
