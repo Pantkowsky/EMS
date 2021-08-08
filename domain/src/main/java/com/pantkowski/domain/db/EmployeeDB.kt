@@ -14,7 +14,7 @@ import com.pantkowski.domain.models.Gender
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import java.util.concurrent.Executors
 
-@Database(entities = [Employee::class], version = 2, exportSchema = false)
+@Database(entities = [Employee::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 internal abstract class EmployeeDB : RoomDatabase() {
 
@@ -49,6 +49,7 @@ internal abstract class EmployeeDB : RoomDatabase() {
             name("Adam")
             lastName("Pantkowski")
             age(30)
+            salary(15000)
             gender(Gender.MALE)
             address(AddressType.HOME, "Home Street, 10")
         }

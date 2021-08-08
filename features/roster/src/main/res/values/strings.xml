@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="total_employees">Amount of employees: %d</string>
+    <string name="total_salaries">Total salary cost: %d PLN</string>
+    <string name="add">Add new</string>
+    <string name="sort">Sort</string>
+</resources>
