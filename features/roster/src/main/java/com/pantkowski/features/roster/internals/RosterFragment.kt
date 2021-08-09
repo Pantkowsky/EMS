@@ -66,7 +66,7 @@ internal class RosterFragment : MviFragment<
         Observable.just(InitialIntent)
 
     private fun addNewIntents() : Observable<AddEmployeeIntent> =
-        binding.metadata.addClicks()
+        binding.metadata.addButtonClicks()
             .map { AddEmployeeIntent }
 
     private fun deleteIntents() : Observable<DeleteEmployeeIntent> =
