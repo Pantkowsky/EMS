@@ -2,6 +2,7 @@ package com.pantkowski.features.roster.internals
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.pantkowski.features.base.mvi.MviFragment
 import com.pantkowski.features.roster.databinding.FragmentRosterBinding
 import com.pantkowski.features.roster.internals.models.*
@@ -21,7 +22,7 @@ internal class RosterFragment : MviFragment<
     private val adapter: RosterAdapter = RosterAdapter()
 
     override val intents: List<Observable<out RosterIntent>>
-        get() = listOf(initialIntent())
+        get() = listOf(initialIntent(), addNewIntents())
 
     override fun setViewBindings(): FragmentRosterBinding =
         FragmentRosterBinding.inflate(layoutInflater)
@@ -38,9 +39,6 @@ internal class RosterFragment : MviFragment<
         binding.rv.adapter = adapter
     }
 
-    private fun initialIntent(): Observable<InitialIntent> =
-        Observable.just(InitialIntent)
-
     private fun showErrorMessage(msg: String?) {
 
     }
@@ -51,6 +49,14 @@ internal class RosterFragment : MviFragment<
 
     private fun renderUI(data: EmployeeData) {
         binding.metadata.bind(data.count, data.salaries)
+        binding.rv.itemAnimator = DefaultItemAnimator()
         this.adapter.setEmployees(data.employees)
     }
+
+    private fun initialIntent(): Observable<InitialIntent> =
+        Observable.just(InitialIntent)
+
+    private fun addNewIntents() : Observable<AddEmployeeIntent> =
+        binding.metadata.addClicks()
+            .map { AddEmployeeIntent }
 }

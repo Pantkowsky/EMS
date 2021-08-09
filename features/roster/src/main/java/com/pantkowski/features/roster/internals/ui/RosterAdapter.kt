@@ -22,7 +22,7 @@ class RosterAdapter : RecyclerView.Adapter<EmployeeHolder>() {
 
     fun setEmployees(data: List<EmployeeModel>) {
         this.employees = data
-        this.notifyItemRangeInserted(0, data.size)
+        this.notifyDataSetChanged()
     }
 }
 
