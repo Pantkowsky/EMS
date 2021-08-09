@@ -6,6 +6,7 @@ import com.pantkowski.features.roster.internals.core.data.RosterRepository
 import com.pantkowski.features.roster.internals.models.EmployeeData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import java.util.*
 
 internal class GetEmployeesUseCase(
     private val source: RosterRepository,
@@ -19,4 +20,8 @@ internal class GetEmployeesUseCase(
 
     fun addEmployee() : Completable =
         source.addEmployee()
+
+    fun deleteEmployee(name: UUID) : Completable {
+        return source.deleteEmployee(name)
+    }
 }

@@ -23,6 +23,11 @@ class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
+    override fun deleteEmployee(id: UUID): Completable =
+        dao.remove(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
     private fun createEmployee() = employee {
         name(UUID.randomUUID().toString())
         lastName("Added")

@@ -19,6 +19,7 @@ internal class EmployeeMapper : Mapper<List<Employee>, EmployeeData> {
 
     private fun Employee.toModel(): EmployeeModel =
         EmployeeModel(
+            this.id,
             this.fullName,
             this.age,
             this.salary,

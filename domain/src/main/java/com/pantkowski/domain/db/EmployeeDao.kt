@@ -1,7 +1,6 @@
 package com.pantkowski.domain.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -9,7 +8,7 @@ import androidx.room.Update
 import com.pantkowski.domain.models.Employee
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
+import java.util.UUID
 
 @Dao
 interface EmployeeDao {
@@ -23,8 +22,8 @@ interface EmployeeDao {
     @Update
     fun edit(employee: Employee): Completable
 
-    @Delete
-    fun remove(employee: Employee): Completable
+    @Query("DELETE FROM employees WHERE id = :id")
+    fun remove(id: UUID): Completable
 
     @Query("SELECT * FROM employees")
     fun getEmployees(): Observable<List<Employee>>

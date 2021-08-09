@@ -5,6 +5,7 @@ import com.pantkowski.features.roster.internals.models.InitialResult
 import com.pantkowski.features.roster.internals.models.RosterAction
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableTransformer
 
 private typealias Transformer = ObservableTransformer<out RosterAction, RosterResult>
@@ -15,7 +16,8 @@ internal class RosterProcessor(private val useCase: GetEmployeesUseCase) : Actio
     override val processors: Map<Transformer, ActionType>
         get() = mapOf(
             initialProcessor to RosterAction.InitialAction::class.java,
-            addEmployeeProcessor to RosterAction.AddEmployeeAction::class.java
+            addEmployeeProcessor to RosterAction.AddEmployeeAction::class.java,
+            deleteEmployeeProcessor to RosterAction.DeleteEmployeeAction::class.java
         )
 
     private val initialProcessor: Transformer
@@ -38,6 +40,20 @@ internal class RosterProcessor(private val useCase: GetEmployeesUseCase) : Actio
                     .cast(RosterResult.AddEmployeeResult::class.java)
                     .onErrorReturn { RosterResult.AddEmployeeResult.Failure(it) }
                     .startWithItem(RosterResult.AddEmployeeResult.InFlight)
+            }
+        }
+
+    private val deleteEmployeeProcessor: Transformer
+        get() = Transformer { actions ->
+            actions.flatMap { action ->
+                Observable.just(action)
+                    .cast(RosterAction.DeleteEmployeeAction::class.java)
+                    .flatMapCompletable { useCase.deleteEmployee(it.id) }
+                    .andThen(useCase.getEmployeeData())
+                    .map { RosterResult.DeleteEmployeeResult.Success(it) }
+                    .cast(RosterResult.DeleteEmployeeResult::class.java)
+                    .onErrorReturn { RosterResult.DeleteEmployeeResult.Failure(it) }
+                    .startWithItem(RosterResult.DeleteEmployeeResult.InFlight)
             }
         }
 }
