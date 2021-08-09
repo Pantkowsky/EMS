@@ -36,7 +36,16 @@
         app:layout_constraintTop_toBottomOf="@id/gender"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/address"
+        />
+
+    <TextView
+        android:id="@+id/salary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/age"
+        android:layout_margin="8dp"
         />
 
     <TextView
@@ -46,7 +55,7 @@
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/age"
+        app:layout_constraintTop_toBottomOf="@id/salary"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textStyle="italic"
         />

@@ -40,7 +40,9 @@ data class EmployeeModel(
         get() = StringBuilder().apply {
             append("Addresses:\n")
             takeIf { addressArg.containsKey(AddressType.HOME) }
-                ?.append("Home: ${addressArg[AddressType.HOME]}\n")
+                ?.append("Home: ${addressArg[AddressType.HOME]}")
+            takeIf { addressArg.size > 1 }
+                ?.append("\n")
             takeIf { addressArg.containsKey(AddressType.BUSINESS) }
                 ?.append("Business: ${addressArg[AddressType.BUSINESS]}\n")
         }.toString()

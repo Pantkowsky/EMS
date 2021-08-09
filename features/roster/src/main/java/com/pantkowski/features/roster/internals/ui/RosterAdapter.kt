@@ -42,6 +42,7 @@ class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
         private val name: TextView = view.findViewById(R.id.name)
         private val gender: TextView = view.findViewById(R.id.gender)
         private val age: TextView = view.findViewById(R.id.age)
+        private val salary: TextView = view.findViewById(R.id.salary)
         private val address: TextView = view.findViewById(R.id.address)
         private val deleteButton: ImageButton = view.findViewById(R.id.delete)
         private lateinit var id: UUID
@@ -57,6 +58,7 @@ class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
             this.name.text = model.name
             this.gender.text = model.gender
             this.age.text = model.age
+            this.salary.text = model.salary
             this.address.text = model.addresses
         }
     }
