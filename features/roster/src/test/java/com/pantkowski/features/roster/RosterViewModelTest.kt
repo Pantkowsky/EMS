@@ -63,7 +63,6 @@ class RosterViewModelTest {
             .test()
             .assertNoErrors()
             .assertValue { state ->
-                print(state)
                 !state.isLoading
                     && state.error != null
                     && state.data == null
