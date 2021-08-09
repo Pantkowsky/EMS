@@ -21,7 +21,9 @@ internal class GetEmployeesUseCase(
     fun addEmployee() : Completable =
         source.addEmployee()
 
-    fun deleteEmployee(name: UUID) : Completable {
-        return source.deleteEmployee(name)
-    }
+    fun deleteEmployee(name: UUID) : Completable =
+        source.deleteEmployee(name)
+
+    fun raiseSalary(id: UUID) : Completable =
+        source.raiseSalary(id)
 }

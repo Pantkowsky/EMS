@@ -10,4 +10,6 @@ sealed class RosterIntent : MviIntent {
     object AddEmployeeIntent : RosterIntent()
 
     data class DeleteEmployeeIntent(val id: UUID) : RosterIntent()
+
+    data class GiveRaiseIntent(val id: UUID) : RosterIntent()
 }

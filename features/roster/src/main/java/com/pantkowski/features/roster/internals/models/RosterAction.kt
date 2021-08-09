@@ -10,4 +10,6 @@ sealed class RosterAction : MviAction {
     object AddEmployeeAction : RosterAction()
 
     data class DeleteEmployeeAction(val id: UUID) : RosterAction()
+
+    data class GiveRaiseAction(val id: UUID) : RosterAction()
 }

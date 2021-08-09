@@ -15,7 +15,8 @@ import java.util.*
 
 class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
 
-    private val subject: PublishSubject<UUID> = PublishSubject.create()
+    private val deleteSubject: PublishSubject<UUID> = PublishSubject.create()
+    private val raiseSubject: PublishSubject<UUID> = PublishSubject.create()
 
     private val diff: AsyncListDiffer<EmployeeModel> =
         AsyncListDiffer(this, EmployeeDiff())
@@ -34,22 +35,26 @@ class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
         block()
     }
 
-    fun adapterClicks() : Observable<UUID> =
-        subject
+    fun adapterDeletes() : Observable<UUID> =
+        deleteSubject
+
+    fun adapterRaises() : Observable<UUID> =
+        raiseSubject
 
     inner class EmployeeHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val name: TextView = view.findViewById(R.id.name)
         private val gender: TextView = view.findViewById(R.id.gender)
         private val age: TextView = view.findViewById(R.id.age)
+        private val salary: TextView = view.findViewById(R.id.salary)
         private val address: TextView = view.findViewById(R.id.address)
         private val deleteButton: ImageButton = view.findViewById(R.id.delete)
+        private val raiseButton: ImageButton = view.findViewById(R.id.raise)
         private lateinit var id: UUID
 
         init {
-            this.deleteButton.setOnClickListener {
-                subject.onNext(id)
-            }
+            this.deleteButton.setOnClickListener { deleteSubject.onNext(id) }
+            this.raiseButton.setOnClickListener { raiseSubject.onNext(id) }
         }
 
         fun bind(model: EmployeeModel) {
@@ -57,6 +62,7 @@ class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
             this.name.text = model.name
             this.gender.text = model.gender
             this.age.text = model.age
+            this.salary.text = model.salary
             this.address.text = model.addresses
         }
     }
