@@ -28,7 +28,7 @@ data class EmployeeModel(
         get() = "Age: $ageArg"
 
     val salary: String
-        get() = "Salary: $salaryArg"
+        get() = "Salary: $salaryArg PLN"
 
     val ageNumber: Int
         get() = ageArg
