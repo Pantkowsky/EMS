@@ -9,7 +9,9 @@ sudo apt-get install openjdk-11-jdk
 Additionally, make sure you have the latest android gradle plugin installed.
 
 If you are running this app on an emulator, make sure you use the emulator
-that is `api 26` and up, as this is the minimum required sdk version.
+that is `api 26` and up, as this is the minimum required sdk version. 
+Otherwise, if you're running this on a physical device, then the version
+of your OS should at least be `8.0` known as `Oreo`
 
 To launch this project, clone/download this repository to your machine and open it from `Android Studio`.
 When `gradle` finishes indexing, `SHIFT + F10` to launch it.
