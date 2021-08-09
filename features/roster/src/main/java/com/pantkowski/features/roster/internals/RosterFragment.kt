@@ -2,6 +2,7 @@ package com.pantkowski.features.roster.internals
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.pantkowski.features.base.mvi.MviFragment
 import com.pantkowski.features.roster.databinding.FragmentRosterBinding
@@ -54,10 +55,13 @@ internal class RosterFragment : MviFragment<
     }
 
     private fun showErrorMessage(msg: String?) {
+        Toast.makeText(this.context, "Error is: $msg", Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading() {
-        // TODO implement UI loader
+        /**
+         * Here should come any logic that should handle data loading state
+         */
     }
 
     private fun renderUI(data: EmployeeData) {
