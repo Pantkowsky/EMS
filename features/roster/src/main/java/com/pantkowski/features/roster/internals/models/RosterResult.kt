@@ -9,4 +9,10 @@ sealed class RosterResult : MviResult {
         data class Failure(val error: Throwable) : InitialResult()
         object InFlight : InitialResult()
     }
+
+    sealed class AddEmployeeResult : RosterResult() {
+        data class Success(val data: EmployeeData) : AddEmployeeResult()
+        data class Failure(val error: Throwable) : AddEmployeeResult()
+        object InFlight : AddEmployeeResult()
+    }
 }
