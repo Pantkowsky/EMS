@@ -38,20 +38,6 @@ internal abstract class EmployeeDB : RoomDatabase() {
             )
                 .fallbackToDestructiveMigration()
                 .build()
-                .apply { prepopulate(context) }
 
-        private fun prepopulate(context: Context) =
-            Executors.newSingleThreadExecutor().execute {
-                getInstance(context).getEmployeeDao().addSync(employee)
-            }
-
-        private val employee: Employee = employee {
-            name("Adam")
-            lastName("Pantkowski")
-            age(30)
-            salary(15000)
-            gender(Gender.MALE)
-            address(AddressType.HOME, "Home Street, 10")
-        }
     }
 }
