@@ -51,12 +51,15 @@ class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
     private fun calculateRaise(employee: Employee) : Long =
         employee.salary + DEFAULT_RAISE
 
-    private val names = listOf("Adam", "Robert", "Wojciech", "Piotr", "Bartosz", "Aneta", "Agnieszka")
-    private val lastNames = listOf("Nazwiskowski", "Testowski", "Projektowski", "Wojciechowski", "Robertowski", "Adamski")
-    private val ages = listOf(21, 24, 28, 33, 35, 30, 31, 29, 27, 25, 32)
+    private val names = listOf("Adam", "Robert", "Wojciech", "Piotr", "Bartosz", "Aneta",
+        "Agnieszka", "Joanna", "Andrzej", "Mateusz", "Julia", "Patrycja", "Karolina", "Tadeusz",
+        "Roman", "Natalia", "Amadeusz")
+    private val lastNames = listOf("Nazwiskowski", "Testowski", "Projektowski", "Wojciechowski", "Robertowski",
+        "Adamski", "Nowak", "Nowakowski", "Nowaczyk", "Rozmaity", "Niedzielny", "Sobotni", "Szybki")
+    private val ages = listOf(21, 24, 28, 33, 35, 30, 31, 29, 27, 25, 32, 40, 39, 38, 37, 20, 22, 23)
     private val salaries = listOf<Long>(15000, 18000, 20000, 22000, 17000, 18500, 19500, 198000, 25100, 256000, 23400)
     private val genders = listOf(Gender.MALE, Gender.FEMALE, Gender.OTHER)
     private val addressTypes = listOf(AddressType.HOME, AddressType.BUSINESS)
     private val addresses = listOf("Cool Street, 1", "Engineering Street, 20", "Awesome Boulevard, 22", "Sunny Alley, 1",
-        "Great Software, 25", "Best Boulevard, 28", "Doggo Street, 4")
+        "Great Software, 25", "Best Boulevard, 28", "Doggo Street, 4", "Anonymous Street, 8", "Random Boulevard, 6", "Next Street, 11")
 }
