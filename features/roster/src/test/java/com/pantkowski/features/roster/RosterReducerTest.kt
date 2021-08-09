@@ -4,7 +4,6 @@ import com.pantkowski.features.roster.internals.core.RosterReducer
 import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.models.RosterViewState
-import com.pantkowski.features.roster.util.testEmployees
 import com.pantkowski.features.roster.util.testEmployeesMapped
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested

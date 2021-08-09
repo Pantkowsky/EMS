@@ -10,5 +10,4 @@ class RosterActivity : BaseActivity(R.layout.activity_roster) {
 
     override val modules: List<Module>
         get() = rosterModules
-
 }

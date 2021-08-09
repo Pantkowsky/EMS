@@ -6,8 +6,12 @@ import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
 import com.pantkowski.features.roster.util.testEmployees
 import com.pantkowski.features.roster.util.testEmployeesMapped
-import io.mockk.*
-import io.reactivex.rxjava3.core.Single
+import io.mockk.MockKAnnotations
+import io.mockk.clearAllMocks
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import io.reactivex.rxjava3.core.Observable
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -33,7 +37,7 @@ class GetEmployeesUseCaseTest {
     @Test
     fun `should get non-empty EmployeeData`() {
 
-        every { repository.getEmployees() } returns Single.just(testEmployees)
+        every { repository.getEmployees() } returns Observable.just(testEmployees)
 
         val expected = EmployeeData(3, 3000, testEmployeesMapped)
 
@@ -44,7 +48,7 @@ class GetEmployeesUseCaseTest {
             .assertValue { data ->
                 data.count == expected.count &&
                     data.employees.map { it.ageNumber }
-                        .reduce(Int::plus) == expected.employees.map { it.ageNumber }.reduce(Int::plus)
+                    .reduce(Int::plus) == expected.employees.map { it.ageNumber }.reduce(Int::plus)
             }
 
         verify(exactly = 1) {
@@ -56,7 +60,7 @@ class GetEmployeesUseCaseTest {
     @Test
     fun `should return empty EmployeeData when no records in database`() {
 
-        every { repository.getEmployees() } returns Single.just(listOf())
+        every { repository.getEmployees() } returns Observable.just(listOf())
 
         useCase.getEmployeeData()
             .test()

@@ -29,5 +29,5 @@ interface EmployeeDao {
     fun getEmployees(): Observable<List<Employee>>
 
     @Query("SELECT * FROM employees where id = :id")
-    fun getEmployee(id: UUID) : Single<Employee>
+    fun getEmployee(id: UUID): Single<Employee>
 }

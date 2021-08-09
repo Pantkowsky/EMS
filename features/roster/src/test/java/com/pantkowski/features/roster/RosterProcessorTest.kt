@@ -5,15 +5,17 @@ import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.models.InitialAction
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
-import com.pantkowski.features.roster.util.testEmployees
 import com.pantkowski.features.roster.util.testEmployeesMapped
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 
 class RosterProcessorTest {
 
@@ -39,7 +41,7 @@ class RosterProcessorTest {
         fun `should return successsful result on InitialAction`() {
 
             val data = EmployeeData(3, 3000, testEmployeesMapped)
-            every { useCase.getEmployeeData() } returns Single.just(data)
+            every { useCase.getEmployeeData() } returns Observable.just(data)
 
             Observable.just(InitialAction)
                 .compose(processor.actionProcessor)
@@ -54,7 +56,7 @@ class RosterProcessorTest {
         fun `should return failure result on InitialAction when error thrown`() {
 
             val error = UninitializedPropertyAccessException("database has not been initialized")
-            every { useCase.getEmployeeData() } returns Single.error(error)
+            every { useCase.getEmployeeData() } returns Observable.error(error)
 
             Observable.just(InitialAction)
                 .compose(processor.actionProcessor)

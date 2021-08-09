@@ -2,11 +2,19 @@ package com.pantkowski.features.roster.internals
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.pantkowski.features.base.mvi.MviFragment
 import com.pantkowski.features.roster.databinding.FragmentRosterBinding
-import com.pantkowski.features.roster.internals.models.*
+import com.pantkowski.features.roster.internals.models.AddEmployeeIntent
+import com.pantkowski.features.roster.internals.models.DeleteEmployeeIntent
+import com.pantkowski.features.roster.internals.models.EmployeeData
+import com.pantkowski.features.roster.internals.models.GiveRaiseIntent
 import com.pantkowski.features.roster.internals.models.InitialIntent
+import com.pantkowski.features.roster.internals.models.RosterAction
+import com.pantkowski.features.roster.internals.models.RosterIntent
+import com.pantkowski.features.roster.internals.models.RosterResult
+import com.pantkowski.features.roster.internals.models.RosterViewState
 import com.pantkowski.features.roster.internals.ui.RosterAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -47,11 +55,13 @@ internal class RosterFragment : MviFragment<
     }
 
     private fun showErrorMessage(msg: String?) {
-
+        Toast.makeText(this.context, "Error is: $msg", Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading() {
-        //TODO implement UI loader
+        /**
+         * Here should come any logic that should handle data loading state
+         */
     }
 
     private fun renderUI(data: EmployeeData) {
@@ -65,15 +75,15 @@ internal class RosterFragment : MviFragment<
     private fun initialIntent(): Observable<InitialIntent> =
         Observable.just(InitialIntent)
 
-    private fun addNewIntents() : Observable<AddEmployeeIntent> =
-        binding.metadata.addClicks()
+    private fun addNewIntents(): Observable<AddEmployeeIntent> =
+        binding.metadata.addButtonClicks()
             .map { AddEmployeeIntent }
 
-    private fun deleteIntents() : Observable<DeleteEmployeeIntent> =
+    private fun deleteIntents(): Observable<DeleteEmployeeIntent> =
         adapter.adapterDeletes()
             .map { DeleteEmployeeIntent(it) }
 
-    private fun raiseIntents() : Observable<GiveRaiseIntent> =
+    private fun raiseIntents(): Observable<GiveRaiseIntent> =
         adapter.adapterRaises()
             .map { GiveRaiseIntent(it) }
 

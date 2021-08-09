@@ -4,6 +4,7 @@ import com.pantkowski.domain.employee
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Gender
 import com.pantkowski.features.roster.internals.models.EmployeeModel
+import java.util.UUID
 
 val adam = employee {
     name("Adam")
@@ -33,4 +34,4 @@ val robert = employee {
 }
 
 val testEmployees = listOf(adam, anna, robert)
-val testEmployeesMapped = testEmployees.map { EmployeeModel(it.fullName, it.age, it.salary, it.gender, it.address) }
+val testEmployeesMapped = testEmployees.map { EmployeeModel(UUID.randomUUID(), it.fullName, it.age, it.salary, it.gender, it.address) }

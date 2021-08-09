@@ -13,12 +13,10 @@ abstract class ActionProcessor<A : MviAction, R : MviResult> : MviProcessor<A, R
     private val mappedProcessors: Map<ObservableTransformer<in A, R>, Class<out A>>
         get() = processors.mapKeys { it.key as ObservableTransformer<in A, R> }
 
-
     override val actionProcessor: ObservableTransformer<A, R> =
         ObservableTransformer<A, R> { actions ->
             actions.publish { shared ->
-                Observable.fromIterable(mappedProcessors.entries)
-                    .flatMap { shared.ofType(it.value).compose(it.key) }
+                Observable.merge(mappedProcessors.entries.map { shared.ofType(it.value).compose(it.key) })
                     .mergeWith(
                         shared.filter { action ->
                             processors.values.none { it.isInstance(action) }

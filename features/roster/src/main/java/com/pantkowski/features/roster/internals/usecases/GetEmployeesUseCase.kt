@@ -6,24 +6,24 @@ import com.pantkowski.features.roster.internals.core.data.RosterRepository
 import com.pantkowski.features.roster.internals.models.EmployeeData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
-import java.util.*
+import java.util.UUID
 
 internal class GetEmployeesUseCase(
     private val source: RosterRepository,
     private val mapper: EmployeeMapper
-    ) : UseCase<List<Employee>, EmployeeData>(mapper) {
+) : UseCase<List<Employee>, EmployeeData>(mapper) {
 
     fun getEmployeeData(): Observable<EmployeeData> =
         source.getEmployees()
             .flatMap { Observable.just(it.reversed()) }
             .map(mapper::mapTarget)
 
-    fun addEmployee() : Completable =
+    fun addEmployee(): Completable =
         source.addEmployee()
 
-    fun deleteEmployee(name: UUID) : Completable =
+    fun deleteEmployee(name: UUID): Completable =
         source.deleteEmployee(name)
 
-    fun raiseSalary(id: UUID) : Completable =
+    fun raiseSalary(id: UUID): Completable =
         source.raiseSalary(id)
 }
