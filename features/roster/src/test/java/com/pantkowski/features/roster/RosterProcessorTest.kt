@@ -39,7 +39,7 @@ class RosterProcessorTest {
         fun `should return successsful result on InitialAction`() {
 
             val data = EmployeeData(3, 3000, testEmployeesMapped)
-            every { useCase.getEmployeeData() } returns Single.just(data)
+            every { useCase.getEmployeeData() } returns Observable.just(data)
 
             Observable.just(InitialAction)
                 .compose(processor.actionProcessor)
@@ -54,7 +54,7 @@ class RosterProcessorTest {
         fun `should return failure result on InitialAction when error thrown`() {
 
             val error = UninitializedPropertyAccessException("database has not been initialized")
-            every { useCase.getEmployeeData() } returns Single.error(error)
+            every { useCase.getEmployeeData() } returns Observable.error(error)
 
             Observable.just(InitialAction)
                 .compose(processor.actionProcessor)

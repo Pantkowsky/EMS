@@ -7,6 +7,7 @@ import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
 import com.pantkowski.features.roster.util.testEmployees
 import com.pantkowski.features.roster.util.testEmployeesMapped
 import io.mockk.*
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -33,7 +34,7 @@ class GetEmployeesUseCaseTest {
     @Test
     fun `should get non-empty EmployeeData`() {
 
-        every { repository.getEmployees() } returns Single.just(testEmployees)
+        every { repository.getEmployees() } returns Observable.just(testEmployees)
 
         val expected = EmployeeData(3, 3000, testEmployeesMapped)
 
@@ -56,7 +57,7 @@ class GetEmployeesUseCaseTest {
     @Test
     fun `should return empty EmployeeData when no records in database`() {
 
-        every { repository.getEmployees() } returns Single.just(listOf())
+        every { repository.getEmployees() } returns Observable.just(listOf())
 
         useCase.getEmployeeData()
             .test()

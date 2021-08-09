@@ -6,6 +6,7 @@ import com.pantkowski.features.roster.internals.core.data.RosterRepository
 import com.pantkowski.features.roster.internals.models.*
 import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
+import com.pantkowski.features.roster.util.RxImmediateSchedulerRule
 import com.pantkowski.features.roster.util.testEmployees
 import io.mockk.*
 import io.reactivex.rxjava3.core.Observable
@@ -13,7 +14,9 @@ import io.reactivex.rxjava3.core.Single
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
+@ExtendWith(RxImmediateSchedulerRule::class)
 class RosterViewModelTest {
 
     private val repo: RosterRepository = mockk()
@@ -36,7 +39,7 @@ class RosterViewModelTest {
 
     @Test
     fun `should create data state`() {
-        every { repo.getEmployees() } returns Single.just(testEmployees)
+        every { repo.getEmployees() } returns Observable.just(testEmployees)
 
         viewModel.intents(Observable.just(RosterIntent.InitialIntent))
         viewModel.states()
@@ -53,13 +56,14 @@ class RosterViewModelTest {
     @Test
     fun `should create error state`() {
         val error = UninitializedPropertyAccessException("database has not been initialized")
-        every { repo.getEmployees() } returns Single.error(error)
+        every { repo.getEmployees() } returns Observable.error(error)
 
         viewModel.intents(Observable.just(RosterIntent.InitialIntent))
         viewModel.states()
             .test()
             .assertNoErrors()
             .assertValue { state ->
+                print(state)
                 !state.isLoading
                     && state.error != null
                     && state.data == null
