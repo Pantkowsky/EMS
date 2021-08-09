@@ -2,6 +2,7 @@ package com.pantkowski.features.roster.internals.models
 
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Gender
+import java.util.*
 
 data class EmployeeData(
     val count: Int,
@@ -10,12 +11,16 @@ data class EmployeeData(
 )
 
 data class EmployeeModel(
+    private val idArg: UUID,
     private val nameArg: String,
     private val ageArg: Int,
     private val salaryArg: Long,
     private val genderArg: Gender,
     private val addressArg: Map<AddressType, String>
 ) {
+    val id: UUID
+        get() = idArg
+
     val name: String
         get() = "Name: $nameArg"
 
