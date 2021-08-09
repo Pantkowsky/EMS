@@ -11,6 +11,22 @@ Additionally, make sure you have the latest android gradle plugin installed.
 To launch this project, clone/download this repository to your machine and open it from `Android Studio`.
 When `gradle` finishes indexing, `SHIFT + F10` to launch it.
 
+# How to
+
+Add Button - click to create a new employee (_ADD_ operation)
+
+![image](https://user-images.githubusercontent.com/9194725/128772348-ac1f2f1d-7064-4cf8-8c79-bf5e49c71f4f.png)
+
+Delete Button - click to delete an employee (_REMOVE_ operation)
+
+![image](https://user-images.githubusercontent.com/9194725/128772630-5cea5454-6297-4f3a-9dad-076fcfc78e8a.png)
+
+Give Raise Button - click to give an employee a raise (_UPDATE_ operation)
+
+![image](https://user-images.githubusercontent.com/9194725/128772726-12c2160a-a790-4f68-87d1-a8d70b9392c0.png)
+
+_GET_ operation is implemented implicitly and used for displaying all employees on the screen
+
 # Modularized project structure
 
 Project is made from standalone android modules, as shown below:
