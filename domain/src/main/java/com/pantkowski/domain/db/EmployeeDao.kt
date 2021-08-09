@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.pantkowski.domain.models.Employee
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
 @Dao
@@ -26,5 +27,5 @@ interface EmployeeDao {
     fun remove(employee: Employee): Completable
 
     @Query("SELECT * FROM employees")
-    fun getEmployees(): Single<List<Employee>>
+    fun getEmployees(): Observable<List<Employee>>
 }
