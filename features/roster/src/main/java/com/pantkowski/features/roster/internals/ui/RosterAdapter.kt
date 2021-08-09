@@ -11,7 +11,7 @@ import com.pantkowski.features.roster.R
 import com.pantkowski.features.roster.internals.models.EmployeeModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
-import java.util.*
+import java.util.UUID
 
 class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
 
@@ -35,10 +35,10 @@ class RosterAdapter : RecyclerView.Adapter<RosterAdapter.EmployeeHolder>() {
         block()
     }
 
-    fun adapterDeletes() : Observable<UUID> =
+    fun adapterDeletes(): Observable<UUID> =
         deleteSubject
 
-    fun adapterRaises() : Observable<UUID> =
+    fun adapterRaises(): Observable<UUID> =
         raiseSubject
 
     inner class EmployeeHolder(view: View) : RecyclerView.ViewHolder(view) {

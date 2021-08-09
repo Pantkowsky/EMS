@@ -9,9 +9,9 @@ interface RosterRepository {
 
     fun getEmployees(): Observable<List<Employee>>
 
-    fun addEmployee() : Completable
+    fun addEmployee(): Completable
 
-    fun deleteEmployee(id: UUID) : Completable
+    fun deleteEmployee(id: UUID): Completable
 
-    fun raiseSalary(id: UUID) : Completable
+    fun raiseSalary(id: UUID): Completable
 }

@@ -13,15 +13,15 @@ import java.util.concurrent.TimeUnit
 
 class MetadataView : ConstraintLayout {
 
-    constructor(context: Context): super(context) {
+    constructor(context: Context) : super(context) {
         init(context)
     }
 
-    constructor(context: Context, attributeSet: AttributeSet): super(context, attributeSet) {
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
         init(context, attributeSet)
     }
 
-    constructor(context: Context, attributeSet: AttributeSet, defStyle: Int): super(context, attributeSet, defStyle) {
+    constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(context, attributeSet, defStyle) {
         init(context, attributeSet, defStyle)
     }
 

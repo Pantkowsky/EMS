@@ -7,7 +7,7 @@ import com.pantkowski.features.base.navigation.destinations.Destination
 object FeatureNavigator {
 
     fun launch(context: Context, destination: Destination) =
-        when(destination) {
+        when (destination) {
             Destination.ROSTER -> launchFeature(context, Action.LAUNCH_ROSTER)
         }
 

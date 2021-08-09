@@ -5,15 +5,17 @@ import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.models.InitialAction
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
-import com.pantkowski.features.roster.util.testEmployees
 import com.pantkowski.features.roster.util.testEmployeesMapped
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 
 class RosterProcessorTest {
 

@@ -8,10 +8,10 @@ data class RosterViewState(
     val data: EmployeeData?
 ) : MviState {
 
-    fun hasErrors() : Boolean =
+    fun hasErrors(): Boolean =
         this.error != null
 
-    fun hasData() : Boolean =
+    fun hasData(): Boolean =
         this.data != null
 
     companion object {

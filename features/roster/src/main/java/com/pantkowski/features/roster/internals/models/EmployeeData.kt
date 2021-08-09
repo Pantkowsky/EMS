@@ -2,7 +2,7 @@ package com.pantkowski.features.roster.internals.models
 
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Gender
-import java.util.*
+import java.util.UUID
 
 data class EmployeeData(
     val count: Int,
@@ -47,7 +47,7 @@ data class EmployeeModel(
                 ?.append("Business: ${addressArg[AddressType.BUSINESS]}\n")
         }.toString()
 
-    fun isValid() : Boolean =
+    fun isValid(): Boolean =
         this.nameArg.isNotEmpty() &&
             this.ageArg in 18..99 &&
             this.salaryArg > 0 &&

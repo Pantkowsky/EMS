@@ -4,7 +4,7 @@ import com.pantkowski.features.roster.internals.core.RosterIntentMapper
 import com.pantkowski.features.roster.internals.models.RosterAction
 import com.pantkowski.features.roster.internals.models.RosterIntent
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.UUID
 
 class RosterIntentMapperTest {
 

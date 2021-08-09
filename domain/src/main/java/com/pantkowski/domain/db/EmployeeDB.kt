@@ -1,18 +1,11 @@
 package com.pantkowski.domain.db
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.pantkowski.domain.employee
-import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Employee
-import com.pantkowski.domain.models.Gender
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import java.util.concurrent.Executors
 
 @Database(entities = [Employee::class], version = 4, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -38,6 +31,5 @@ internal abstract class EmployeeDB : RoomDatabase() {
             )
                 .fallbackToDestructiveMigration()
                 .build()
-
     }
 }

@@ -3,7 +3,8 @@ package com.pantkowski.features.roster
 import com.pantkowski.domain.models.Employee
 import com.pantkowski.features.roster.internals.models.EmployeeData
 import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
-import com.pantkowski.features.roster.util.*
+import com.pantkowski.features.roster.util.testEmployees
+import com.pantkowski.features.roster.util.testEmployeesMapped
 import org.junit.jupiter.api.Test
 
 class EmployeeMapperTest {
@@ -25,8 +26,10 @@ class EmployeeMapperTest {
         assert(expected.count == given.count)
         assert(expected.employees.size == given.employees.size)
         assert(expectedValid == givenValid)
-        assert(expected.employees.map { it.ageNumber }.reduce(Int::plus)
-            == given.employees.map { it.ageNumber }.reduce(Int::plus))
+        assert(
+            expected.employees.map { it.ageNumber }.reduce(Int::plus)
+                == given.employees.map { it.ageNumber }.reduce(Int::plus)
+        )
     }
 
     @Test

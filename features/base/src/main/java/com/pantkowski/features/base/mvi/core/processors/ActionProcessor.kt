@@ -13,7 +13,6 @@ abstract class ActionProcessor<A : MviAction, R : MviResult> : MviProcessor<A, R
     private val mappedProcessors: Map<ObservableTransformer<in A, R>, Class<out A>>
         get() = processors.mapKeys { it.key as ObservableTransformer<in A, R> }
 
-
     override val actionProcessor: ObservableTransformer<A, R> =
         ObservableTransformer<A, R> { actions ->
             actions.publish { shared ->

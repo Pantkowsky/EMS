@@ -3,14 +3,16 @@ package com.pantkowski.features.roster
 import com.pantkowski.features.roster.internals.RosterViewModel
 import com.pantkowski.features.roster.internals.core.RosterProcessor
 import com.pantkowski.features.roster.internals.core.data.RosterRepository
-import com.pantkowski.features.roster.internals.models.*
+import com.pantkowski.features.roster.internals.models.RosterIntent
 import com.pantkowski.features.roster.internals.usecases.EmployeeMapper
 import com.pantkowski.features.roster.internals.usecases.GetEmployeesUseCase
 import com.pantkowski.features.roster.util.RxImmediateSchedulerRule
 import com.pantkowski.features.roster.util.testEmployees
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.clearAllMocks
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -46,10 +48,10 @@ class RosterViewModelTest {
             .test()
             .assertNoErrors()
             .assertValue { state ->
-                !state.isLoading
-                    && state.error == null
-                    && state.data != null
-                    && state.data?.count == 3
+                !state.isLoading &&
+                    state.error == null &&
+                    state.data != null &&
+                    state.data?.count == 3
             }
     }
 
@@ -63,9 +65,9 @@ class RosterViewModelTest {
             .test()
             .assertNoErrors()
             .assertValue { state ->
-                !state.isLoading
-                    && state.error != null
-                    && state.data == null
+                !state.isLoading &&
+                    state.error != null &&
+                    state.data == null
             }
     }
 }

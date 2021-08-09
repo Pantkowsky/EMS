@@ -4,7 +4,7 @@ import com.pantkowski.domain.employee
 import com.pantkowski.domain.models.AddressType
 import com.pantkowski.domain.models.Gender
 import com.pantkowski.features.roster.internals.models.EmployeeModel
-import java.util.*
+import java.util.UUID
 
 val adam = employee {
     name("Adam")
