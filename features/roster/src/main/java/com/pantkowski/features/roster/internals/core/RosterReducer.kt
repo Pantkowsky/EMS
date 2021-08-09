@@ -1,6 +1,7 @@
 package com.pantkowski.features.roster.internals.core
 
 import com.pantkowski.features.base.mvi.core.reducers.MviReducer
+import com.pantkowski.features.roster.internals.models.AddEmployeeResult
 import com.pantkowski.features.roster.internals.models.InitialResult
 import com.pantkowski.features.roster.internals.models.RosterResult
 import com.pantkowski.features.roster.internals.models.RosterViewState
@@ -22,6 +23,24 @@ class RosterReducer : MviReducer<RosterViewState, RosterResult>() {
                         error = result.error
                     )
                 is RosterResult.InitialResult.InFlight ->
+                    oldState.copy(
+                        isLoading = true,
+                        error = null
+                    )
+            }
+            is AddEmployeeResult -> when(result) {
+                is RosterResult.AddEmployeeResult.Success ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = null,
+                        data = result.data
+                    )
+                is RosterResult.AddEmployeeResult.Failure ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = result.error
+                    )
+                is RosterResult.AddEmployeeResult.InFlight ->
                     oldState.copy(
                         isLoading = true,
                         error = null
