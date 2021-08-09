@@ -32,7 +32,7 @@ abstract class MviViewModel<
     private val statesObservable: Observable<S> by lazy {
         composeState()
     }
-    private val intentsFilter: ObservableTransformer<I ,I>
+    private val intentsFilter: ObservableTransformer<I, I>
         get() = ObservableTransformer { intents ->
             intents.publish { shared ->
                 Observable.merge(

@@ -8,3 +8,7 @@ plugins {
 
 addRxDependencies()
 addDatabaseDependencies()
+
+dependencies {
+    add(Scope.IMPLEMENTATION, Dependencies.Impl.koin)
+}
