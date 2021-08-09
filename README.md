@@ -61,9 +61,9 @@ Employee > EmployeeModel > EmployeeData > ViewState
 
 # frameworks
 
-- <a href="https://developer.android.com/training/data-storage/room">Room</a>
-- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation component</a>
-- <a href="http://reactivex.io/">ReactiveX</a>
+- <a href="https://developer.android.com/training/data-storage/room">Room</a> for local storage
+- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation component</a> for feature navigation
+- <a href="http://reactivex.io/">ReactiveX</a> for obvious reasons
 - <a href="https://junit.org/junit5/docs/current/user-guide/">Junit5</a> for testing
 - <a href="https://mockk.io/ANDROID.html">Mockk</a> for mocking
 - <a href="https://insert-koin.io/">Koin</a> for dependency injection
