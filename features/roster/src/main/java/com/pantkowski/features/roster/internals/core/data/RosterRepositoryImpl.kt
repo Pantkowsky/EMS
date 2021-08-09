@@ -13,6 +13,10 @@ import java.util.*
 
 class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
 
+    companion object {
+        const val DEFAULT_RAISE: Long = 3000
+    }
+
     override fun getEmployees() : Observable<List<Employee>> =
         dao.getEmployees()
             .subscribeOn(Schedulers.io())
@@ -28,6 +32,13 @@ class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
+    override fun raiseSalary(id: UUID): Completable =
+        dao.getEmployee(id)
+            .map { calculateRaise(it) }
+            .flatMapCompletable { dao.edit(id, it) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
     private fun createEmployee() = employee {
         name(names.random())
         lastName(lastNames.random())
@@ -36,6 +47,9 @@ class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
         gender(genders.random())
         address(addressTypes.random(), addresses.random())
     }
+
+    private fun calculateRaise(employee: Employee) : Long =
+        employee.salary + DEFAULT_RAISE
 
     private val names = listOf("Adam", "Robert", "Wojciech", "Piotr", "Bartosz", "Aneta", "Agnieszka")
     private val lastNames = listOf("Nazwiskowski", "Testowski", "Projektowski", "Wojciechowski", "Robertowski", "Adamski")

@@ -12,4 +12,6 @@ interface RosterRepository {
     fun addEmployee() : Completable
 
     fun deleteEmployee(id: UUID) : Completable
+
+    fun raiseSalary(id: UUID) : Completable
 }
