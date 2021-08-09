@@ -1,9 +1,12 @@
 package com.pantkowski.features.roster.internals.core.data
 
 import com.pantkowski.domain.models.Employee
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
 
 interface RosterRepository {
 
-    fun getEmployees(): Single<List<Employee>>
+    fun getEmployees(): Observable<List<Employee>>
+
+    fun addEmployee() : Completable
 }
