@@ -13,7 +13,7 @@ data class Employee(
     @ColumnInfo val salary: Long,
     @ColumnInfo val gender: Gender,
     @ColumnInfo val address: Map<AddressType, String>,
-    @PrimaryKey val id: UUID = UUID.nameUUIDFromBytes("$name $lastName".encodeToByteArray())
+    @PrimaryKey val id: UUID = UUID.randomUUID()
 ) {
     val fullName: String
         get() = "$name $lastName"
