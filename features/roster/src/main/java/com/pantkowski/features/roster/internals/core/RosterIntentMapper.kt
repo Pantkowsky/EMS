@@ -12,5 +12,6 @@ class RosterIntentMapper : IntentMapper<RosterIntent, RosterAction> {
         when(intent) {
             is InitialIntent -> InitialAction
             is AddEmployeeIntent -> AddEmployeeAction
+            is DeleteEmployeeIntent -> DeleteEmployeeAction(intent.id)
         }
 }
