@@ -64,5 +64,23 @@ class RosterReducer : MviReducer<RosterViewState, RosterResult>() {
                         error = null
                     )
             }
+            is GiveRaiseResult -> when(result) {
+                is RosterResult.GiveRaiseResult.Success ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = null,
+                        data = result.data
+                    )
+                is RosterResult.GiveRaiseResult.Failure ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = result.error
+                    )
+                is RosterResult.GiveRaiseResult.InFlight ->
+                    oldState.copy(
+                        isLoading = true,
+                        error = null
+                    )
+            }
         }
 }

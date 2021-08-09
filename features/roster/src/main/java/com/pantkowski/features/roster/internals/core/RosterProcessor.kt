@@ -17,7 +17,8 @@ internal class RosterProcessor(private val useCase: GetEmployeesUseCase) : Actio
         get() = mapOf(
             initialProcessor to RosterAction.InitialAction::class.java,
             addEmployeeProcessor to RosterAction.AddEmployeeAction::class.java,
-            deleteEmployeeProcessor to RosterAction.DeleteEmployeeAction::class.java
+            deleteEmployeeProcessor to RosterAction.DeleteEmployeeAction::class.java,
+            salaryRaiseProcessor to RosterAction.GiveRaiseAction::class.java
         )
 
     private val initialProcessor: Transformer
@@ -54,6 +55,20 @@ internal class RosterProcessor(private val useCase: GetEmployeesUseCase) : Actio
                     .cast(RosterResult.DeleteEmployeeResult::class.java)
                     .onErrorReturn { RosterResult.DeleteEmployeeResult.Failure(it) }
                     .startWithItem(RosterResult.DeleteEmployeeResult.InFlight)
+            }
+        }
+
+    private val salaryRaiseProcessor: Transformer
+        get() = Transformer { actions ->
+            actions.flatMap { action ->
+                Observable.just(action)
+                    .cast(RosterAction.GiveRaiseAction::class.java)
+                    .flatMapCompletable { useCase.raiseSalary(it.id) }
+                    .andThen(useCase.getEmployeeData())
+                    .map { RosterResult.GiveRaiseResult.Success(it) }
+                    .cast(RosterResult.GiveRaiseResult::class.java)
+                    .onErrorReturn { RosterResult.GiveRaiseResult.Failure(it) }
+                    .startWithItem(RosterResult.GiveRaiseResult.InFlight)
             }
         }
 }
