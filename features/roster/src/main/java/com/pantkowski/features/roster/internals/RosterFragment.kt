@@ -28,7 +28,7 @@ internal class RosterFragment : MviFragment<
     private val scrollSubject: PublishSubject<Unit> = PublishSubject.create()
 
     override val intents: List<Observable<out RosterIntent>>
-        get() = listOf(initialIntent(), addNewIntents(), deleteIntents())
+        get() = listOf(initialIntent(), addNewIntents(), deleteIntents(), raiseIntents())
 
     override fun setViewBindings(): FragmentRosterBinding =
         FragmentRosterBinding.inflate(layoutInflater)
@@ -70,8 +70,12 @@ internal class RosterFragment : MviFragment<
             .map { AddEmployeeIntent }
 
     private fun deleteIntents() : Observable<DeleteEmployeeIntent> =
-        adapter.adapterClicks()
+        adapter.adapterDeletes()
             .map { DeleteEmployeeIntent(it) }
+
+    private fun raiseIntents() : Observable<GiveRaiseIntent> =
+        adapter.adapterRaises()
+            .map { GiveRaiseIntent(it) }
 
     /**
      * Hacky hack to animate list changes. This is a smelly code
