@@ -61,7 +61,7 @@ class RosterRepositoryImpl(private val dao: EmployeeDao) : RosterRepository {
         "Adamski", "Nowak", "Nowakowski", "Nowaczyk", "Rozmaity", "Niedzielny", "Sobotni", "Szybki"
     )
     private val ages = listOf(21, 24, 28, 33, 35, 30, 31, 29, 27, 25, 32, 40, 39, 38, 37, 20, 22, 23)
-    private val salaries = listOf<Long>(15000, 18000, 20000, 22000, 17000, 18500, 19500, 198000, 25100, 256000, 23400)
+    private val salaries = listOf<Long>(15000, 18000, 20000, 22000, 17000, 18500, 19500, 19800, 25100, 25600, 23400)
     private val genders = listOf(Gender.MALE, Gender.FEMALE, Gender.OTHER)
     private val addressTypes = listOf(AddressType.HOME, AddressType.BUSINESS)
     private val addresses = listOf(
