@@ -73,7 +73,7 @@ architecture in more detail:
 
 _*keep in mind that this project does not contain an Api Client which does appear on the diagram below_
 
-![image](https://user-images.githubusercontent.com/9194725/128768454-edd6fb8a-082a-4ae3-9841-0aa356b969c1.png)
+![image](https://user-images.githubusercontent.com/9194725/130486887-82ea80f0-7d89-4a20-84c1-35992141e974.png)
 
 The data flow from database access until ui rendering is done via below model conversion:
 ```
