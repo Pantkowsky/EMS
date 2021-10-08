@@ -10,6 +10,12 @@ data class EmployeeData(
     val employees: List<EmployeeModel>
 )
 
+enum class SortType {
+    AGE,
+    NAME,
+    SALARY
+}
+
 data class EmployeeModel(
     private val idArg: UUID,
     private val nameArg: String,
