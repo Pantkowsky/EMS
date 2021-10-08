@@ -27,21 +27,15 @@ class MetadataView : ConstraintLayout {
 
     private lateinit var totalEmployees: TextView
     private lateinit var salaries: TextView
-    private lateinit var addButton: Button
 
     fun bind(total: Int, salaries: Long) {
         this.totalEmployees.text = String.format(context.getString(R.string.total_employees), total)
         this.salaries.text = String.format(context.getString(R.string.total_salaries), salaries)
     }
 
-    fun addButtonClicks(): Observable<Unit> =
-        addButton.clicks()
-            .debounce(500, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-
     private fun init(context: Context, attributeSet: AttributeSet? = null, defStyle: Int = 0) =
         inflate(context, R.layout.view_metadata, this).also {
             this.totalEmployees = it.findViewById(R.id.total)
             this.salaries = it.findViewById(R.id.salarySum)
-            this.addButton = it.findViewById(R.id.addButton)
         }
 }
