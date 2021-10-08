@@ -27,4 +27,10 @@ sealed class RosterResult : MviResult {
         data class Failure(val error: Throwable) : GiveRaiseResult()
         object InFlight : GiveRaiseResult()
     }
+
+    sealed class SortResult : RosterResult() {
+        data class Success(val data: EmployeeData, val sortType: SortType) : SortResult()
+        data class Failure(val error: Throwable) : SortResult()
+        object InFlight : SortResult()
+    }
 }

@@ -12,4 +12,6 @@ sealed class RosterAction : MviAction {
     data class DeleteEmployeeAction(val id: UUID) : RosterAction()
 
     data class GiveRaiseAction(val id: UUID) : RosterAction()
+
+    data class SortAction(val type: SortType) : RosterAction()
 }

@@ -1,12 +1,12 @@
 package com.pantkowski.features.roster.internals.core
 
 import com.pantkowski.features.base.mvi.core.reducers.MviReducer
+import com.pantkowski.features.roster.internals.models.*
 import com.pantkowski.features.roster.internals.models.AddEmployeeResult
 import com.pantkowski.features.roster.internals.models.DeleteEmployeeResult
 import com.pantkowski.features.roster.internals.models.GiveRaiseResult
 import com.pantkowski.features.roster.internals.models.InitialResult
-import com.pantkowski.features.roster.internals.models.RosterResult
-import com.pantkowski.features.roster.internals.models.RosterViewState
+import com.pantkowski.features.roster.internals.models.SortResult
 
 class RosterReducer : MviReducer<RosterViewState, RosterResult>() {
 
@@ -83,6 +83,33 @@ class RosterReducer : MviReducer<RosterViewState, RosterResult>() {
                         isLoading = true,
                         error = null
                     )
+            }
+            is SortResult -> when(result) {
+                is RosterResult.SortResult.Success ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = null,
+                        data = sorted(result.data, result.sortType)
+                    )
+                is RosterResult.SortResult.Failure ->
+                    oldState.copy(
+                        isLoading = false,
+                        error = result.error
+                    )
+                is RosterResult.SortResult.InFlight ->
+                    oldState.copy(
+                        isLoading = true,
+                        error = null
+                    )
+            }
+        }
+
+    private fun sorted(data: EmployeeData, sortType: SortType) : EmployeeData =
+        with(data) {
+            when(sortType) {
+                SortType.AGE -> copy(employees = data.employees.sortedBy { it.age })
+                SortType.NAME -> copy(employees = data.employees.sortedBy { it.name })
+                SortType.SALARY -> copy(employees = data.employees.sortedBy { it.salary })
             }
         }
 }

@@ -12,4 +12,6 @@ sealed class RosterIntent : MviIntent {
     data class DeleteEmployeeIntent(val id: UUID) : RosterIntent()
 
     data class GiveRaiseIntent(val id: UUID) : RosterIntent()
+
+    data class SortIntent(val type: Int) : RosterIntent()
 }
